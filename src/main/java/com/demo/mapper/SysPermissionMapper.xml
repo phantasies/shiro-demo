@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.mapper.SysPermissionMapper">
+    <resultMap id="BaseResultMap" type="com.demo.model.SysPermission">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" javaType="java.util.Date"/>
+    </resultMap>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select id, name, permission, create_time
+        from sys_permission
+        where id = #{id}
+    </select>
+</mapper>

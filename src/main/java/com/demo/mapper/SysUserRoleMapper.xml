@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.mapper.SysUserRoleMapper">
+    <resultMap id="BaseResultMap" type="com.demo.model.SysUserRole">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="permission" property="permission" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"
+                javaType="java.util.Date"/>
+    </resultMap>
+
+    <select id="selectByName" resultMap="BaseResultMap">
+        select id, `name`, permission, create_time
+        from sys_user_role
+        where `name` = #{name}
+    </select>
+
+    <select id="selectPermissionsByRoleName" resultType="java.lang.String">
+        select group_concat(permission SEPARATOR ',') as permissions
+        from sys_user_role
+        where `name` = #{name}
+    </select>
+</mapper>
